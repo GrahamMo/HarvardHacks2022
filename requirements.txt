@@ -1,2 +1,5 @@
-meteomatics
-requests
+meteomatics==2.8.1
+requests==2.28.1
+beautifulsoup4==4.11.1
+selenium==4.5.0
+geopy==2.2.0
