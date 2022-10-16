@@ -27,4 +27,19 @@ class windCalculator():
         power = 0.5 * rho * area * (velocity ** 3)
         power = round(power,2)
         return power
+    
+    def get_20year_savings(pow_out):
+
+        upfront_cost = 2000 # approx. purchasing cost of backyard wind turbine
+
+        avg_cost_per_kWh = 0.15 # average cost per kWh in the USA
+
+        # pow_out is in W or Joule/s
+        # so convert it to KiloJoule/hour or kWh
+        # multiply by average cost per kWh in the usa, and the amount of hours in 20 years
+        twentyyear_rev = pow_out * 1000 * 60 * 60 * avg_cost_per_kWh * 8760 * 20
+
+        total_savings = twentyyear_rev - upfront_cost 
+
+        return [upfront_cost,twentyyear_rev, total_savings]
 
