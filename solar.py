@@ -26,7 +26,7 @@ def get_data():
     op = webdriver.ChromeOptions()
     op.add_argument('headless')
     # driver = webdriver.Chrome(options=op)
-    driver = webdriver.Chrome('/Users/michaelfedotov/Documents/HackHarvard/chromedriver', options=op)
+    driver = webdriver.Chrome('/Users/kwitv/Documents/CodingProjects/HackHarvard2022/Harvardhacks2022/chromedriver', options=op)
     driver.get(get_full_url("23 Harvard St Somerville, MA 02143"))
 
     html = driver.page_source
@@ -89,7 +89,7 @@ def send_data():
     # function for monthly electricity
 
 
-
+get_data()
 
 
 
