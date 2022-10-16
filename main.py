@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def default():
-    return ""
+    return "Online", 
 
 @app.route("/result", methods = ["GET"])
 def get_results():
@@ -28,8 +28,8 @@ def get_results():
     wind_speed = wind_calc.get_wind_data(location.latitude, location.longitude)
     exp_wind_pout = wind_calc.get_wind_power(0.5, wind_speed)
 
+    return str(exp_wind_pout)
 
-    return ""
 
 
 app.run("0.0.0.0", 5000) #run the app. first parameter indicates bind from anywhere (take all requests) and the 2nd is prot
