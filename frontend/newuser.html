@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>{{name}}</h1>
+    <!-- <p>My first paragraph.</p> -->
+
+    <form action="/action_page.php" method="get" id="addressform">
+        <label for="fname">Input your address:</label>
+        <input type="text" id="fname" name="address"><br><br>
+        <!-- <label for="lname">Last name:</label>
+        <input type="text" id="lname" name="lname"> -->
+    </form>
+    
+    <p>The button below is outside the form element, but still part of the form.</p>
+    
+    <button type="submit" form="addressform" value="Submit">Submit</button>
+
+</body>
+</html>
