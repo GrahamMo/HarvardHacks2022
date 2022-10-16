@@ -7,12 +7,10 @@ import LoginCredentials
 class windCalculator():
     def init(self):
         pass
-    def get_wind_data(self):
+    def get_wind_data(self,lat,lon):
         """Calls api to get average windspeed given long and lat"""
         api_key = os.getenv('api_key')
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
-        lat = 42.380960
-        lon = -71.125240
         complete_url = base_url + "appid=" + api_key + f"&lat={lat}&lon={lon}"
         response = requests.get(complete_url)
         x = response.json()
@@ -28,7 +26,7 @@ class windCalculator():
         power = round(power,2)
         return power
     
-    def get_20year_savings(pow_out):
+    def get_20year_savings(self, pow_out):
 
         upfront_cost = 2000 # approx. purchasing cost of backyard wind turbine
 
@@ -37,9 +35,9 @@ class windCalculator():
         # pow_out is in W or Joule/s
         # so convert it to KiloJoule/hour or kWh
         # multiply by average cost per kWh in the usa, and the amount of hours in 20 years
-        twentyyear_rev = pow_out * 1000 * 60 * 60 * avg_cost_per_kWh * 8760 * 20
+        twentyyear_rev = pow_out * 1/1000 * 60 * avg_cost_per_kWh * 8760 * 20
 
         total_savings = twentyyear_rev - upfront_cost 
 
-        return [upfront_cost,twentyyear_rev, total_savings]
+        return [upfront_cost,round(twentyyear_rev,2),round(total_savings,2)]
 

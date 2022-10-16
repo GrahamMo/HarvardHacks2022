@@ -1,28 +1,27 @@
-#import solar.py
-import windspeed
-import solar
+import requests, json, os
+import meteomatics.api as api
+import math
 from flask import Flask, request
 from geopy.geocoders import Nominatim
+import windspeed
+import solar
 
+def display(response):
 
-app = Flask(__name__)
+    print("\n"+response[0]+"\n")
+    print(response[1]+"\n")
+    print(response[2]+"\n")
 
-#-------------------------------
-#END POINT
+    return True
 
-@app.route("/")
-def default():
-    return "Online", 
+def main():
+    address = input("Enter Address: ")
 
-@app.route("/result", methods = ["GET"])
-def get_results():
-    address = request.args.get('address')
-
-    geolocator = Nominatim(user_agent="Solar Calc")
+    geolocator = Nominatim(user_agent="myGeocoder")
     location = geolocator.geocode(address)
 
-    solar_calc = solar.solarCalculator()
-    solar_data = solar_calc.get_data(location.latitude, location.longitude)
+    #solar_calc = solar.solarCalculator()
+    #solar_data = solar_calc.get_data(location.latitude, location.longitude)
 
     wind_calc = windspeed.windCalculator()
     wind_speed = wind_calc.get_wind_data(location.latitude, location.longitude)
@@ -34,12 +33,9 @@ def get_results():
 
     response = [("Upfront cost: $" + str(upfront_cost)),("20 Year Benefits: $" \
         + str(twentyyear_rev)),("By installing a Backyard Wind Turbine you will save $"\
-             + str(total_savings) + "over the course of 20 years.")]
+             + str(total_savings) + " over the course of 20 years.")]
 
-    return response
+    display(response)
+    return True
 
-
-
-
-
-app.run("0.0.0.0", 5000) #run the app. first parameter indicates bind from anywhere (take all requests) and the 2nd is prot
+main()
