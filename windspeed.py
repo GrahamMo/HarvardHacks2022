@@ -8,6 +8,7 @@ class windCalculator():
     def init(self):
         pass
     def get_wind_data(self):
+        """Calls api to get average windspeed given long and lat"""
         api_key = os.getenv('api_key')
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
         lat = 42.380960
@@ -20,14 +21,10 @@ class windCalculator():
         return (x['wind']['speed'])
 
     def get_wind_power(self,radius,velocity):
-
+        '''Calculates wind power from radius of turbine and speed of wind.'''
         rho = 1.225 #average wind density is 1.225 kg/m^3
-
         area = math.pi * (radius ** 2)
-
         power = 0.5 * rho * area * (velocity ** 3)
-
         power = round(power,2)
-
         return power
 
