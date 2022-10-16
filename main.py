@@ -30,4 +30,6 @@ def get_results():
 
     return str(exp_wind_pout)
 
+
+
 app.run("0.0.0.0", 5000) #run the app. first parameter indicates bind from anywhere (take all requests) and the 2nd is prot
